@@ -67,6 +67,9 @@ export default {
       immediate: true
     }
   },
+  mounted() {
+    console.log(process.env)
+  },
   methods: {
     async onSubmit(values) {
       console.log(values)

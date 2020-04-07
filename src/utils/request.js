@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { Toast } from 'vant'
-
+const CancelToken = axios.CancelToken
+const requestList = []
+const sources = {}
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 10000,
@@ -10,7 +12,16 @@ const service = axios.create({
 console.log(process.env)
 
 service.interceptors.request.use(config => {
-  
+  const request = config.url + config.method + JSON.stringify(config.data)
+  config.cancelToken = new CancelToken(cancel => {
+    sources[request] = cancel
+  })
+  if(requestList.includes(request)) {
+    sources[request]('取消重复请求')
+  } else {
+    requestList.push(request)
+  }
+
   return config
 }, error => {
   return Promise.reject(error)

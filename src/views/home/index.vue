@@ -1,18 +1,20 @@
 <template>
-  <layout>
-    <template v-solt:default>
-      <div>
-        首页内容
-      </div>
-    </template>
-  </layout>    
+  <div class="container">
+    <nav-bar />
+    <div class="content">
+      首页
+    </div>
+    <Tab-bar />
+  </div>
 </template>
 
 <script>
-import Layout from '@/layout'
+import NavBar from '@/components/navbar'
+import TabBar from '@/components/tabbar'
 export default {
   components: {
-    Layout
+    NavBar,
+    TabBar
   },
   data() {
     return {

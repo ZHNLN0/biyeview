@@ -8,15 +8,23 @@ import { getToken } from './utils/auth'
 const whiteList = ['/login', '/regist']
 NProgress.configure({ showSpinner: false })
 
+const isDev = process.env.NODE_ENV === 'development'
+
 router.beforeEach(async(to, from, next) => {
   NProgress.start()
-  const isLogin = getToken()
+  let isLogin = true
+  if(!isDev) {
+    isLogin = getToken()
+  }
   if(isLogin) {
     if(to.path === '/login' || to.path === '/regist') {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasRoles = store.getters.roles >= to.meta.roles ? true : false
+      let hasRoles = true
+      if(!isDev) {
+        hasRoles = store.getters.roles >= to.meta.roles ? true : false
+      }
       if(hasRoles) {
         store.dispatch('app/setTitle', to.meta.title)
         next()
