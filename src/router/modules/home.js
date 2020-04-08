@@ -6,7 +6,8 @@ const homeRouter = [
     component: () => import('@/views/home/index'),
     meta: {
       title: '首页',
-      roles: 1
+      roles: 1,
+      keepAlive: true
     }
   }
 ]

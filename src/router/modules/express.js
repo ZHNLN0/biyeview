@@ -5,7 +5,8 @@ const expressRouter = [
     component: () => import('@/views/express/index'),
     meta: {
       title: '快递',
-      roles: 2
+      roles: 2,
+      keepAlive: true
     }
   },
   {
@@ -14,7 +15,8 @@ const expressRouter = [
     component: () => import('@/views/express/expressSearch'),
     meta: {
       title: '快递查询',
-      roles: 2
+      roles: 2,
+      keepAlive: true
     }
   } 
 ]
