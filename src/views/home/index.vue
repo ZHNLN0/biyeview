@@ -3,7 +3,7 @@
     <nav-bar />
     <div class="content">
       
-      <van-form @submit="onSubmit">
+      <!-- <van-form @submit="onSubmit">
         <van-field name="uploader" label="选张图片">
           <template #input>
             <van-uploader v-model="uploader" />
@@ -32,7 +32,8 @@
             提交
           </van-button>
         </div>
-      </van-form>
+      </van-form> -->
+      <diary-detail />
     </div>
     <Tab-bar />
   </div>
@@ -41,10 +42,12 @@
 <script>
 import NavBar from '@/components/navbar'
 import TabBar from '@/components/tabbar'
+import DiaryDetail from './DiaryDetail'
 export default {
   components: {
     NavBar,
-    TabBar
+    TabBar,
+    DiaryDetail
   },
   data() {
     return {
@@ -58,3 +61,6 @@ export default {
   }
 }
 </script>
+<style lang="stylus" scoped>
+
+</style>
