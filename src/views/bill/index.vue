@@ -82,3 +82,8 @@ export default {
   }
 }
 </script>
+<style lang="stylus" scoped>
+/deep/ .van-tabs__line {
+  bottom 0
+}
+</style>
