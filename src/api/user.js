@@ -1,17 +1,17 @@
 import request from '@/utils/request'
 
-export function login(data) {
+export function login(params) {
   return request ({
     url: '/api/user/login',
     method: 'post',
-    data
+    params
   })
 }
 
-export function regist(data) {
+export function regist(params) {
   return request({
     url: '/api/user/register',
     method: 'post',
-    data
+    params
   })
 }

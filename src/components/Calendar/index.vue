@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-cell :class="isSearch ? 'isSearch' : ''" :title="title[type]" :value="date" @click="show = true">
+    <van-cell :class="isSearch ? 'isSearch' : ''" :title="title" :value="date" @click="show = true">
       <template v-if="isSearch" #right-icon>
         <van-icon
           :name="isSearch ? 'search' : ''"
@@ -32,9 +32,17 @@ export default {
       },
       default: 'single'
     },
+    emitName: {
+      type: String,
+      default: 'input'
+    },
     isSearch: {
       type: Boolean,
       default: false
+    },
+    title: {
+      type: String,
+      default: '请选择时间'
     }
   },
   data() {
@@ -43,18 +51,17 @@ export default {
       const current = new Date().getTime()
       return new Date(current - oneDay * i)
     }
+    const now = new Date()
+    const year = now.getFullYear()
+    const month = now.getMonth()
+    const date = now.getDate()
     return {
       date: '',
       show: false,
       minDate: new Date(2020, 0, 1),
       maxDate: new Date(),
-      title: {
-        single: '请选择单个时间',
-        multiple: '请选择多个时间',
-        range: '请选择时间区间'
-      },
       defaultDate: {
-        single: new Date(),
+        single: new Date(year, month, date),
         multiple: [dateSetting()],
         range: [dateSetting(2), dateSetting()]
       }
@@ -69,7 +76,6 @@ export default {
       }
     },
     onConfirm(date) {
-      console.log(date)
       if(this.type === 'range') {
         const [start, end] = date
         this.date = `${this.formatDate(start)} - ${this.formatDate(end)}`
@@ -79,7 +85,7 @@ export default {
         this.show = false
       }
       // 供使用该组件时同时需要使用 v-model 的情况
-      this.$emit('input', date)
+      this.$emit(this.emitName, date.getTime())
     },
     handleSearch() {
       // 执行请求 并向父组件传递值，当只需要获取时间进行请求时执行

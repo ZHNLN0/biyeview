@@ -14,7 +14,7 @@
       <van-grid :column-num="3">
         <van-grid-item icon="chart-trending-o" text="账单分析" />
         <van-grid-item icon="description" text="快递小结" />
-        <van-grid-item icon="edit" text="发表日记" />
+        <van-grid-item icon="edit" text="发表日记" to="diary" />
         <van-grid-item icon="records" text="我的日记" />
         <van-grid-item icon="info-o" text="修改信息" />
         <van-grid-item icon="warning-o" text="修改密码" />

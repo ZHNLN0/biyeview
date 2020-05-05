@@ -16,20 +16,24 @@ service.interceptors.request.use(config => {
   config.cancelToken = new CancelToken(cancel => {
     sources[request] = cancel
   })
-  if(requestList.includes(request)) {
+  if (requestList.includes(request)) {
     sources[request]('取消重复请求')
   } else {
     requestList.push(request)
   }
-
+  if(config.method !== 'get') {
+    config.data = config.params
+    config.params = null
+  }
   return config
 }, error => {
   return Promise.reject(error)
 })
 
 service.interceptors.response.use(response => {
+  requestList.pop()
   const res = response.data
-  if(res.code !== 0) {
+  if (res.code !== 20000) {
     Toast.fail({
       message: res.message
     })

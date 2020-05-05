@@ -4,31 +4,31 @@
       <van-form>
         <van-field name="stepper" label="餐饮美食">
           <template #input>
-            <van-stepper v-model="billDetail.food" :disabled="!isActivity" />
+            <van-field v-model.number="billDetail.eat" type="number" :disabled="!isActivity" />
           </template>
         </van-field>
         <van-field name="stepper" label="网购消费">
           <template #input>
-            <van-stepper v-model="billDetail.shopping" :disabled="!isActivity" />
+            <van-field v-model.number="billDetail.shopping" type="number" :disabled="!isActivity" />
           </template>
         </van-field>
         <van-field name="stepper" label="生活缴费">
           <template #input>
-            <van-stepper v-model="billDetail.live" :disabled="!isActivity" />
+            <van-field v-model.number="billDetail.live" type="number" :disabled="!isActivity" />
           </template>
         </van-field>
         <van-field name="stepper" label="交通出行">
           <template #input>
-            <van-stepper v-model="billDetail.trip" :disabled="!isActivity" />
+            <van-field v-model.number="billDetail.trip" type="number" :disabled="!isActivity" />
           </template>
         </van-field>
         <van-field name="stepper" label="其他消费">
           <template #input>
-            <van-stepper v-model="billDetail.other" :disabled="!isActivity" />
+            <van-field v-model.number="billDetail.other" type="number" :disabled="!isActivity" />
           </template>
         </van-field>
         <div v-if="isActivity" style="margin: 16px;">
-          <van-button round block type="info" native-type="submit">
+          <van-button round block type="info" native-type="submit" @click="handleSumbit">
             提交
           </van-button>
         </div>
@@ -44,13 +44,17 @@ export default {
       type: Object,
       default: () => {
         return {
-          food: '',
-          shopping: '',
-          live: '',
-          trip: '',
-          other: ''
+          eat: 0,
+          shopping: 0,
+          live: 0,
+          trip: 0,
+          other: 0
         }
       }
+    },
+    emitName: {
+      type: String,
+      default: 'createBill'
     },
     activityTime: {
       type: Date,
@@ -59,6 +63,11 @@ export default {
     isActivity: {
       type: Boolean,
       default: true
+    }
+  },
+  methods: {
+    handleSumbit() {
+      this.$emit(this.emitName, this.billDetail)
     }
   }
 }
