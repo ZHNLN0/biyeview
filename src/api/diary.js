@@ -15,6 +15,13 @@ class DiaryApi {
       params
     })
   }
+  getDiaryList(params) {
+    return request({
+      url: '/api/diary/getDiaryList',
+      method: 'get',
+      params
+    })
+  }
 }
 
 export default new DiaryApi()

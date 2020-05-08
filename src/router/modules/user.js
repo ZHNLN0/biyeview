@@ -6,10 +6,16 @@ const userRouter = [
     meta: { title: '我的', roles: 1, keepAlive: true }
   },
   {
-    path: '/diary',
-    name: 'diary',
-    component: () => import('@/views/user/diary/index'),
+    path: '/createDiary',
+    name: 'createDiary',
+    component: () => import('@/views/user/diary/CreateDiary'),
     meta: { title: '发表日记', roles: 1 }
+  },
+  {
+    path: '/myDiary',
+    name: 'myDiary',
+    component: () => import('@/views/user/diary/MyDiary'),
+    meta: { title: '我的日记', roles: 1 }
   }
 ]
 
