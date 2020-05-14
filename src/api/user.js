@@ -15,3 +15,19 @@ export function regist(params) {
     params
   })
 }
+
+export function updateInfo(params) {
+  return request({
+    url: '/api/user/changeInfo',
+    method: 'post',
+    params
+  })
+}
+
+export function upload(params) {
+  return request({
+    url: '/api/utils/upload',
+    method: 'post',
+    params
+  })
+}

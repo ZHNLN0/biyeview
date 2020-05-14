@@ -16,7 +16,7 @@
         <van-grid-item icon="description" text="快递小结" />
         <van-grid-item icon="edit" text="发表日记" to="createDiary" />
         <van-grid-item icon="records" text="我的日记" to="myDiary" />
-        <van-grid-item icon="info-o" text="修改信息" />
+        <van-grid-item icon="info-o" text="修改信息" to="updateUser" />
         <van-grid-item icon="warning-o" text="修改密码" />
       </van-grid>
       <van-col class="bottom-button" :span="24">

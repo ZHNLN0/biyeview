@@ -16,6 +16,12 @@ const userRouter = [
     name: 'myDiary',
     component: () => import('@/views/user/diary/MyDiary'),
     meta: { title: '我的日记', roles: 1 }
+  },
+  {
+    path: '/updateUser',
+    name: 'updateUser',
+    component: () => import('@/views/user/information/UpdateUser'),
+    meta: { title: '修改信息', roles: 1 }
   }
 ]
 
